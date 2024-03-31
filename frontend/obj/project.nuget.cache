@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "uUC1KLxuJ2eNXe8UAr2WiUJu7Gc02+taWCibU69j+qSBsHe8GMfbxerpp46O0jnajiYBfiU8GXJfKg8qN30J7g==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\kattr\\Documents\\Kyle\\vanilla-giraffe\\frontend\\frontend.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\kattr\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}
