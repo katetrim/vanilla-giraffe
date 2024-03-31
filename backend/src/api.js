@@ -16,6 +16,10 @@ app.use(bodyParser.json());
 
 app.use(cors());
 
+const database = new PostgresDb();
+
+database.connectToDatabase();
+
 app.put("/login", async (req, res) => {
   try {
     const body = req.body;
@@ -27,9 +31,22 @@ app.put("/login", async (req, res) => {
   }
 });
 
-app.get("/date-ideas", async (req, res) => {
+app.post("/register", async (req, res) => {
   try {
-    res.json("activityIdeas");
+    const body = req.body;
+    let success = await database.insertNewUser(body.userName, body.password)
+    success ? res.status(200) : res.status(401);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Server error" });
+  }
+});
+
+app.post("/add-meal", async (req, res) => {
+  try {
+    const body = req.body;
+    let success = await database.insertNewUser(body.userName, body.password);
+    success ? res.status(200) : res.status(401);
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Server error" });
