@@ -33,6 +33,7 @@ export class PostgresDb {
     this.client.query(query, values, (err) => {
       if (err) {
         console.error("Error inserting row:", err);
+        throw err;
       } else {
         console.log("Row inserted successfully");
       }
@@ -44,7 +45,9 @@ export class PostgresDb {
     const values = [userName];
     if (this.checkForUser(userName)) {
       const res = await this.client.query(query, values);
-      if (password == res.rows[0].password) {
+      userInfo = res.rows[0];
+      if (password == userInfo.password) {
+        userId = userInfo.id;
         console.log("Password correct");
         return true;
       }
