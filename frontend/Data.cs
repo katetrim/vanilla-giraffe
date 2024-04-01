@@ -3,14 +3,14 @@ namespace frontend.Api;
 public record MealAddRequest(string UserId, string AccessKey, string MealName, MealDuration MealDuration);
 public record MealRemoveRequest(string UserId, string AccessKey, string MealName);
 public record MealsGetRequest(string UserId, string AccessKey);
-public record LoginRequest(string UserId, string Password);
-public record RegisterRequest(string UserId, string Password);
+public record LoginRequest(string Username, string Password);
+public record RegisterRequest(string Username, string Password);
 public record LogoutRequest(string UserId, string AccessKey);
 
 public record MealAddResponse();
 public record MealRemoveResponse();
 public record MealsGetResponse(List<(string, MealDuration)> AllMeals);
-public record LoginResponse(string AccessKey);
+public record LoginResponse(string AccessKey, string UserId);
 
 public record RegisterResponse();
 public record LogoutResponse();

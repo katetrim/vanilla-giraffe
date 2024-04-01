@@ -79,6 +79,28 @@ public class Api
         return resp.Item1 is HttpStatusCode.OK;
     } 
 
+    public async Task<bool> Register(string username, string password)
+    {
+        var resp = await MakePostRequestAsync<RegisterRequest, RegisterResponse>(_baseUrl, new RegisterRequest(
+            Username: username,
+            Password: password
+        ));
+
+        // Meal added successfully when Status code OK
+        return resp.Item1 is HttpStatusCode.OK;
+    } 
+
+    public async Task<(bool, string?)> Login(string username, string password)
+    {
+        var resp = await MakePostRequestAsync<LoginRequest, LoginResponse>(_baseUrl, new LoginRequest(
+            Username: username,
+            Password: password
+        ));
+
+        // Meal added successfully when Status code OK
+        return (resp.Item1 is HttpStatusCode.OK, resp.Item2?.AccessKey);
+    } 
+
     public async Task<(bool, List<Meal>?)> GetMeals(string username, string accessKey)
     {
         var resp = await MakeGetRequestAsync<MealsGetResponse>(_baseUrl, ("Username", username), ("AccessKey", accessKey));

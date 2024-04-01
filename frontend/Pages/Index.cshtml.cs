@@ -8,7 +8,10 @@ public class IndexModel : PageModel
 {
     private readonly ILogger<IndexModel> _logger;
 
-    public List<string> Items { get; set; } = [];
+    public List<string> PreparedItems { get; set; } = [];
+    
+    [BindProperty]
+    public int Count { get; set; }
 
     public IndexModel(ILogger<IndexModel> logger)
     {
@@ -17,7 +20,7 @@ public class IndexModel : PageModel
 
     public async Task OnGet()
     {
-        Items = new List<string>()
+        PreparedItems = new()
         {
             "Bolognese",
             "Lasagne",
@@ -27,6 +30,12 @@ public class IndexModel : PageModel
             "Panna Cotta",
             "Gelato"
         };
+    }
+
+    public async Task<IActionResult> OnPost()
+    {
+        
+        return Page();
     }
 }
 
